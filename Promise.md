@@ -2,7 +2,7 @@ Promise
 
 > A promise is an abstraction for asynchronous programming. It's an object that proxies for the return value or the exception thrown by a function that has to do some asynchronous processing.
 
-###Standard promise
+### Standard promise
 ```
 let promise = doSomethingAsync();
 promise.then(onFulfilled, onRejected);
@@ -10,7 +10,7 @@ promise.then(onFulfilled, onRejected);
 
 The point of Promise is that the `then` method of a promise object also returns a promise object. In this way, the then process can be chained.
 
-###Error handling
+### Error handling
 Other than writing both `onFulfilled` and `onRejected` function in one `then` call, it can also be written like this:
 
 ```
