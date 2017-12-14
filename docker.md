@@ -12,8 +12,8 @@ A container is a runtime instance of an image--what the image becomes in memory 
 
 also support other docker commands like docker build, create, run ...
 
-`docker-compose -p project-name up`  create and start containers
-`docker-compose -p project-name stop`  stop services
-`docker-compose -p project-name kill`  kill containers
-`docker-compose -p project-name restart`  restart services
-`docker-compose -p project-name rm  remove` stopped containers
+`docker-compose -p project-name up`  create and start containers  
+`docker-compose -p project-name stop`  stop services  
+`docker-compose -p project-name kill`  kill containers  
+`docker-compose -p project-name restart`  restart services  
+`docker-compose -p project-name rm  remove` stopped containers  
