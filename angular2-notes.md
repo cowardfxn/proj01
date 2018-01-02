@@ -1,10 +1,11 @@
 # Angular 2
 
 You can start an Angular 2 project with the quickstart git repo or use angular-cli, the latter options is recommended.
-module  
-bootstrap array  an array defining dependency components for this module  
-export array  export components, directives and pipes  
-import array  import functionality from other Angular JS modules  
+
+#### module  
+*bootstrap array*  an array defining dependency components for this module  
+*export array*  export components, directives and pipes  
+*import array*  import functionality from other Angular JS modules  
 
 application is made up of modules, an application must have a root module which imports BrowserModule  
 Below root module, there can be multiple feature modules, a feature module can have many componnets  
