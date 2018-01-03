@@ -2,15 +2,22 @@ An image is a lightweighted, stand-alone, executable package that includes every
 
 A container is a runtime instance of an image--what the image becomes in memory when actually executed. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.
 
-`docker volume create volume_name`
-`docker volume ls`
-`docker volume inspect volume_name`
-`docker volume rm volume_name`
+#### docker volume
+Create volume used for docker containers
 
+ - `docker volume create volume_name`
+ - `docker volume ls`
+ - `docker volume inspect volume_name`
+ - `docker volume rm volume_name`
+
+#### containers
+`docker containers prune`  remove unused containers
 
 ### docker-compose
 
 also support other docker commands like docker build, create, run ...
+
+If project name is not specified, `docker-compose` command will use directory name as service name by default.
 
 `docker-compose -p project-name up`  create and start containers, -d run services in detached mode  
 `docker-compose -p project-name stop`  stop services  
