@@ -32,7 +32,13 @@ If project name is not specified, `docker-compose` command will use directory na
  
  `docker-compose -p project-name up -d app-name1 app-name2 ...`  restart only specified application, can also be done in interactive mode
  
- 
+docker-compose 需要`docker-compose.yml`和`Dockerfile`两个文件才能使用
+
+web server 程序不监听具体的IP地址或域名时，可以通过hosts文件的映射关系，接收访问本机对应端口的所有请求
+在docker的container内部，web server程序监听地址"0.0.0.0"，可以起到类似的效果
+而如果指定了监听地址或者域名，则只能从该地址+端口访问web server对应的服务，如果改web server是在虚拟机中，则还需要对虚拟机设置反向代理，才能从外部访问server
+
+
 ### Dockerfile
 Used to build an image, can also use another file by parameter -f:  
 `docker build -f path/to/a/dockerfile`
