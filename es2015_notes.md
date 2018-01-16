@@ -6,6 +6,7 @@ methodology module and data extend with development, dynamic table type fits bet
 Atomic, Consistent, Isolated, Durabled  features of postgresql model
 
 ## ES2015
+ES2015 AKA ES6
 
 ##### arrow
 new function declaration syntax with `=>`, unlike *function*, arrows share the same lexical this as their surrounding code
