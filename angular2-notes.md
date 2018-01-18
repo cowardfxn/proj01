@@ -41,3 +41,15 @@ Angular2 command line tool to manage Angular JS applications
 
  - `ng new project_name` create new project, make new files and directories
  - `ng server` run the project, use the configurations preconfigured in the files
+ - `ng generate component component-name` create a name-specified component for a project
+
+
+### Reference between different parts
+`index.html`  Angular2 工程默认的页面入口文件，引用了 *app-root* 标签，作为app内所有页面元素的入口  
+直接在index.html中引用app内 *app-root* 以外的标签，改标签内容无法显示  
+`src/app/app.component.html`  app中 *app-root* 标签绑定的页面，可以在这个页面中引用其他的Component中定义的标签  
+
+所有的Component都需要在同一个NgModule(app.module.ts)中声明
+
+在html中，使用ngModel属性对html标签和Component中的变量进行双向绑定
+
