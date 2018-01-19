@@ -42,6 +42,7 @@ Angular2 command line tool to manage Angular JS applications
  - `ng new project_name` create new project, make new files and directories
  - `ng server` run the project, use the configurations preconfigured in the files
  - `ng generate component component-name` create a name-specified component for a project
+ - `ng generate service service-name [--module=component-name]` create a service, optionally you can bind it with certain component
 
 
 ### Reference between different parts
