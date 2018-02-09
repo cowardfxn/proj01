@@ -15,17 +15,18 @@ When updating an exist HTML element, ReactDOM will only update the changed parts
 You can render a new ReactDOM object to an existing HTML object
 
 ```
-const element = <h1>Hello</h1>;
+const jsxElement = <h1>Hello</h1>;
 ReactDOM.reander(
-    element,
+    jsxElement,
     document.getElementById('root')
 );
 ```
 
 ## React Component
 
-Function or class which accepts parameter (like `props`) and returns a single React object
-
+Function or class which accepts parameter (like `props`) and returns a single React object  
+`props` could contain all attributes defined in JSX's HTML templates
+ 
 Component names always begin with an uppercase letter
 
 Component is imported as tag name of JSX object  
@@ -87,6 +88,15 @@ State keeps alive in the range of component
 
 `componentDidMount`  Execute after component is renderd to DOM for the first time. 
 `componentWillUnmount`  Execute before component's DOM will be destoryed
+
+##### Keywords of component
+ - this.state
+ - this.setState
+ - this.props
+ - props.children
+
+You should avoid using ineritance between components as much as you can.
+
 
 #### Events
 HTML events can also be defined in JSX, but event name in camel case, like "onClick", "onFocus" etc  
@@ -189,3 +199,116 @@ There are two ways to pass parameters from HTML element to function
 
 You can use similar branch grammar like if, && and triple operator like JavaScript in Component definition
 
+attribute `key` should be defined in the context which generates the *li* JSX object, rather than in JSX declaration
+
+
+```
+// ---- Wrong Example begin ----
+function ListItem(props) {
+	const value = props.value;
+	return (
+		// shouldn't declare key here
+		<li key={value.toString()}>
+			{value}
+		</li>
+	);
+}
+
+function NumberList(props) {
+	const numbers = props.numbers;
+	const listItems = numbers.map((number) =>
+		// attribute "key" should be defined here, however it doesn't
+		<ListItem value={number} />
+	);
+	
+	return (
+		<ul>
+			{listItem}
+		</ul>
+	)
+}
+// ---- Wrong Example end ----
+
+
+// ---- Correct Example begin ----
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+	<NumberList numbers={numbers} />,
+	document.getElementById('root')
+);
+
+function NumberList(props) {
+	const numbers = props.numbers;
+	const listItems = numbers.map((number) =>
+		// attribute "key" should be defined here, however it doesn't
+		<ListItem key={number.toString()} value={number} />
+	);
+	
+	return (
+		<ul>
+			{listItem}
+		</ul>
+	)
+}
+
+```
+
+The keyword `key` won't be passed into component, if you want to use the value inside component, you can define another attribute with the same value
+
+Lifting state up
+单一数据源
+component should avoid saving middle values as much as possible
+state只用于交互
+datas are stored in props
+states are stored in state
+
+
+JSX中的array元素需要指定key作为唯一标识，否则React将会产生警告  
+key属性是React的保留字，无法在component的props中被访问
+
+创建react项目，推荐的方式是通过`create-react-app`库
+
+```
+npm i -g create-react-app
+create-react-app {app-name}
+```
+
+将会创建一个包括了webpack的React项目
+
+
+`React event system` React中自定义的事件系统，HTML元素事件都可以在其中找到对应项目  
+React页面上的元素ID并非固定，每次渲染时会自动生成  
+
+自定义的component名称需要以大写字母开头，即使是对某个component进行引用的变量，也应该以大写字母开头
+
+JSX中定义的props属性(properties)，默认值是true，不推荐使用这种方式声明属性，因为es6中，object的默认值是名称字符串，即object.foo如果没有声明值，默认值将是字符串'foo'  
+es6支持的通过`...`对object进行解包的语法，也可以用在JSX声明中
+
+```
+<App1 foo={'Ben'} bar='Alfred'>
+```
+equivalent to
+
+```
+let {kind, ...props} = {
+	kind: 42,
+	foo: 'Ben',
+	bar: 'Alfred'
+};
+<App1 {...props} />
+```
+
+component中，setState会触发component重新渲染
+
+component声明周期中的接口
+
+ - componentWillMount  页面渲染componnet的HTML元素之前，在执行render方法之前
+ - componentDidMount  页面渲染componnet的HTML元素之后
+ - componentWillReceiveProps  在已被加载的component接收新属性(props)之前执行，只有在有新属性时才会执行，因此执行setState可能不触发componentWillReceiveProps
+ - componentWillUpdate 在component被render之前执行，如果在这个方法里执行了setState，则会递归触发componet更新，造成无限递归
+ - componentDidUpdate componnet被render之后执行，如果在这个方法里执行了setState，则会递归触发componet更新，造成无限递归
+ - componentWillUnmount 在component被释放，占用的资源被垃圾回收之前执行
+ - componentDidCatch 处理在子componnet中产生的任何js错误，将当前componet变成处理子层级内所有异常的**Error boundaries**
+
+Getting started with redux
+https://egghead.io/courses/getting-started-with-redux
