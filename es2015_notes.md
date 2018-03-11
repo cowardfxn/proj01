@@ -5,6 +5,9 @@ methodology module and data extend with development, dynamic table type fits bet
 *ACID*
 Atomic, Consistent, Isolated, Durabled  features of postgresql model
 
+[Original article](https://github.com/lukehoban/es6features#readme)  
+[More Resources](https://github.com/rse/es6-features)
+
 ## ES2015
 ES2015 AKA ES6
 
