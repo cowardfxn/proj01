@@ -25,6 +25,6 @@ def color_invert(img_obj):
 
 if __name__ == '__main__':
     f1 = os.path.expanduser('~/Desktop/123.png')
-    f2 = os.path.expanduser('~/Desktop/2.png')
+    f2 = os.path.expanduser('~/Desktop/1.png')
     # print(img_to_string(Image.open(f1)))
     print(img_to_string(Image.open(f2)))

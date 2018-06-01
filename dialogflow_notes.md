@@ -79,7 +79,7 @@ The contexts in follow-up intents are default to a lifespan of 2 requests
 Values in contexts can be refered with following form: `#context_name.parameter_name`
 
 ### Input contexts
-Input contexts limit intents to be matched only when certain contexts are set.  
+Input contexts limit intents to be matched only when **certain contexts** are set.  
 Match with input context name.
 
 Can be used to chain words of a dialog.
@@ -92,3 +92,7 @@ Event is a feature that allows you to invoke intents by an event name instead of
 
 Sending event in fulfilement executes target action in background. While sending response, setting input contexts and output contexts chain intents together with the same context names, every intent is triggered by its own training phrases like two sides in a dialog
 
+**Event is matched through context**
+> When you send a query request with an event parameter, Dialogflow creates a context with the same name as the event name and context "lifespan": 0. This lifespan value means that the context is active only during the current request.
+
+> You can use this context to pass parameter values from the data object to the parameters manually defined in the Action section of the intent or reference these parameter values in the Response section of the triggered intent. To do so, use the following format: #event_name.parameter_name_from_data
