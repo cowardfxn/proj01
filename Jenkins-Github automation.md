@@ -35,3 +35,17 @@ click "Add webhook"
 
 Webhooks page also shows "Recent Deliveries", allow users to check delivery response and try to redeliver.
 
+
+## Branches and Pull Requests
+
+[Official documentation](https://jenkins.io/doc/book/pipeline/multibranch/)
+
+1. Create a **Multibranch pipeline**
+2. Add branch source, Git or Github, provide Github user credentials
+ - kind: *Username with Password*
+ - Username: Github username
+ - Password: Github personal access token
+3. If select Github source type, you should enter user name before selecting repository
+4. Click *save* button
+
+Github pull requests will be triggered via **webhook**.
