@@ -41,3 +41,26 @@ array slice doesn't create new value objects, any changes to slice elements is m
 
 array size functions, `len` the number of element array contains, `cap` the maximum number of elements array can have
 
+---
+
+**Thoughts**
+
+pass parameter value or pass parameter reference
+
+DataFrame.reindex(newcolumnOrder, axis=1)  re-order column sequence according the new order
+DataFrame.to_csv([filepath, index=False]) if no file path provided, this method returns CSV string
+
+Suspicious
+struct object itself is a pointer to its value, that's the reason why methods declared with pointer can be called directly with struct object method calling
+
+
+Using pointer receiver can let method modify value directly, and avoid the possibility of copying value on each method call
+
+When assigned to interface object, a method declared with struct and a method declared with struct's pointer receiver is different.
+intepreter don't see a method declared with pointer receiver as declared directly with struct
+
+Interfaces are implemented implicitly, a type implements an interface by implementing its methods, thus no need of explicit declaration and "implement" keyword.
+
+notice grammer design intention over grammer details
+
+Implement package interface methods to override package default methods, like Stringer.String() to fmt.Println()

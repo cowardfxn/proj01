@@ -312,3 +312,49 @@ component声明周期中的接口
 
 Getting started with redux
 https://egghead.io/courses/getting-started-with-redux
+
+
+## react-router
+A popular routing component in React, current version is v4, supports static routing and dynamic routing.
+
+With react-router, links are guided to render `Component`s, if a link URL doesn't match any router, it will render *null*.  
+
+Routers are declared in `<Router>` tag, a `<Router>` tag without `path` attribute match any link URL, so it's a good way to define default page or **404** page.
+
+#### Basic Components
+There are three types of components in React Router: *router components*, *router matching components*, and *navigation components*
+
+##### Router Component
+
+```
+<Switch>
+    <Router exact path='/' component={Home}/>
+    <Router path='/about' component={About}/>
+    <Router path='/contact' component={Contact}/>
+</Switch>
+```
+
+`<BrowserRouter>` for normal server requests and `<HashRouter>` for static file server.
+
+##### Router Matching Component
+
+`<Route>` tag for a dedicated URL, if the URL matches `path` attribute of `<Route>`, then the component in `component` attribute is rendered.  
+But if it doesn't match, it will render *null*.
+
+A `<Route>` with no `path` will always match.
+
+There are 3 prop choices in `<Route>` tag, *component*, *render*, *children*.
+
+Prop *component* should be used when there is existing component to render.  
+Prop *render* accepts an inline function, should only be used when you have to pass in-scope variables to the component you want to render.  
+
+If you pass inline function to *component* prop, there will be undesired component unmounts/remounts.
+
+`<Switch>` tag to group `<Route>`s, the `<Route>` tags in a `<Switch>` group will only be matched once.
+
+##### Navigation Components
+`<Link>` tag for actual link, which will create a `<a>` tag in HTML.
+
+`<NavLink>` tag creates `<a>` tag with *active* style in HTML.
+
+`<Redirect>` tag navigates using its `to` prop when renders.
