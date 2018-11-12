@@ -1,7 +1,16 @@
 # ML notes
 
+## Numpy
+`np.argmax(array, axis)`  returns global maximum if axis not specified, maximum in every column if axis=0, maximum in every row if axis=1  
+`np.tile(array, (m, n))`  return duplicated m*n times of original array  
+`np.dot(a1, np.diag([arg1, arg2, arg3, arg4, arg5]))`  multiply by diagonal matrix to multiply each column with different values  
+Or, use single dimensional array(a shape of `(n,)` )  
+`a1 * np.ones(a1.shape[1])`  
+`a1 + np.ones(a1.shape[1])`
+
 ## Pandas
 
+`pandas.read_csv(p1, sep='\t', comment='#', skiprows=4, header=0)` read from CSV file, return DataFrame  
 `pandas.DataFrame.dot`  supports multiplication with DataFrame or Series objects, can't use ndarray directly  
 `DataFrame.values`  returns ndarray directly  
 `DataFrame.drop(labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise')`  drop column or row, not inplace by default  
@@ -92,4 +101,13 @@ with tf.variable_scope('model') as scope:
     output1 = my_image_filter(input1)
 with tf.variable_scope(scope, reuse=True):
     output2 = my_image_filter(input2)
+```
+
+## Miscellaneous
+
+##### Get CPU count
+
+```Python
+os.cpu_count()
+multiprocessing.cpu_count()
 ```
