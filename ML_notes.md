@@ -106,6 +106,13 @@ with tf.variable_scope(scope, reuse=True):
 `tf.convert_to_tensor(value, dtype, name, preferred_dtype)`  Convert the given value(numpy object, list, bool, float, etc.) to a Tensor  
 `tf.Session`  create new session  
 `Graph.as_default`  set current graph as default graph of subscequent code block  
+`tf.scatter_update(ref, indices, updates, use_locking, name)`  Update ref with updates according to position and sequence in indices   
+`tf.scatter_nd(indices, updates, shape, name)`  Create a new tensor by applying sparse updates to individual values or slices within a tensor(initially zero for numeric, empty for string) of the given shape according to indices, it is an inverse of `tf.gather_nd`  
+`tf.stack(values, axis, name)` Stack a list of rank-R tensors into one rank-(R+1) tensor  
+`tf.equal(x, y, name)`  Returns the truth value of (x == y) element-wise  
+`tf.where(cond, x, y)`  
+`tf.logical_not(x, name)`  return the truth value of not x element-wise  
+
 
 #### Graph
 Tensorflow functions consist of `tf.Operation` and `tf.Tensor`, a default graph is applied if graph isn't explicitly specified.
