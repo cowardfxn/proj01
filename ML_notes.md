@@ -103,6 +103,40 @@ with tf.variable_scope(scope, reuse=True):
     output2 = my_image_filter(input2)
 ```
 
+`tf.convert_to_tensor(value, dtype, name, preferred_dtype)`  Convert the given value(numpy object, list, bool, float, etc.) to a Tensor  
+`tf.Session`  create new session  
+`Graph.as_default`  set current graph as default graph of subscequent code block  
+
+#### Graph
+Tensorflow functions consist of `tf.Operation` and `tf.Tensor`, a default graph is applied if graph isn't explicitly specified.
+
+##### Variable name
+Each variable has a unique name inside a graph.  
+If two variables are assigned the same name, then Tensorflow will automatically append indexes like "\_0", "\_1" to the names.
+
+##### Operation name
+Naming pattern: `<OP_NAME>:<i>` i represents index
+
+
+##### Distributed computation
+You can schedule Tensorflow tasks running on different devices.
+
+Device specification
+
+`/job:<JOB_NAME>/task:<TASK_INDEX>/device:<DEVICE_TYPE>:<DEVICE_INDEX>`
+
+A set of **tasks** are assembled into **job**.
+
+`tf.summary.FileWriter(path, session.graph)`  write executed graph operations to specific directory, output files can be opened in Tensorboard interface
+
+#### TensorBoard
+
+Start up command  
+`tensorboard --log=/path/to/log/files/`  
+Then the interface URL is printed in log
+
+You can also upload log files from web page.
+
 ## Miscellaneous
 
 ##### Get CPU count
