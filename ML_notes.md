@@ -1,12 +1,16 @@
 # ML notes
 
 ## Numpy
-`np.argmax(array, axis)`  returns global maximum if axis not specified, maximum in every column if axis=0, maximum in every row if axis=1  
+`np.argmax(array, axis)`  returns indices of global maximum if axis not specified, maximum indices in every column if axis=0, maximum indices in every row if axis=1  
 `np.tile(array, (m, n))`  return duplicated m*n times of original array  
 `np.dot(a1, np.diag([arg1, arg2, arg3, arg4, arg5]))`  multiply by diagonal matrix to multiply each column with different values  
 Or, use single dimensional array(a shape of `(n,)` )  
 `a1 * np.ones(a1.shape[1])`  
 `a1 + np.ones(a1.shape[1])`
+
+`np.where(cond[, a, b])` Return elements, either from a or b, if no alternative provided, return element indexes which meet condition  
+`np.rint(array)` Round array element to the nearest integers  
+`np.digitize(x, bin, right=False)` Return the indices of the bins to which each value in input array x belongs
 
 ## Pandas
 
@@ -22,8 +26,21 @@ matplotlib.pyplot.show()
 ```
 Plot value distribution in dataframe object  
 
+`DataFrame.filter(items=None, like=None, regex=None, axis=None)`  Return subsets of rows or columns of the DataFrame according to label in the specified index.  
+`DataFrame.where(cond, other=nan, ...)` Retrun an object of the same shape as self and whose corresponding entries are from self where cond is True and from other where cond is False. Its contrary is `DataFrame.mask(cond, other=nan, ...)`, which takes self values when cond is False.  
+`DataFrame.iloc[m, n]` Select data by integer positions
+`DataFrame.loc['a1', 'index_1']` Select data by labels or conditional statement  
+`DataFrame.ix` Select in hybrid approach, **deprecated** in version *0.20.1*  
+`DataFrame.query(cond_str)` Select data by a boolean expression, it can be column name condition and contain external variables(marked as `@` charcter)  
+`DataFrame.apply(func, axis=0)` Apply function to elements in DataFrame along specific axis, similar to function `map` to `iterables` in native Python  
+`DataFrame.astype(dtype)` Cast DataFrame to specified dtype  
+`DataFrame.rename(mapper=None, index=None, axis=None, ...)` Rename axis labels according to mapper  
+`DataFrame.rename_values(mapper, axis=0, copy=True, inplace=False)` Alter the name of the index or columns, restricted version of method `rename`  
+`DataFrame.replace(to_replace=None, value=None, inplace=False)` Replace the values of `to_replace` in self to value, overall substitution  
+
 
 ## Tensorflow r1.12
+`tf.enable_eager_execution()`  Enable eager execution  
 `tf.keras.Sequential`  define sequential model  
 `tf.keras.laters.Dense`  common layer type  
 `model.compile(loss, optimizer, callbacks, ...)`  configure model's optimizer, loss fucntion and metrcis(monitor training)  
@@ -57,9 +74,11 @@ distributed running can utilise both CPU and GPU
 `tf.contrig.eager.gradients_functions`  returns a function that computes the derivates of its input function parameter with respect to its arguments  
 `tf.custom_gradient`  decorator, the decorated function should return scalar value and gradient function  
 
+##### Eager execution
 Computation is automatially offloaded to GPUs(if available) during *eager execution*  
 Eager execution performance is comparable to graph computation for compute-heavy models.  
 But graph execution has better performance for models with less computations, and graph execution has advantages for distributed training, performance optimizaitons, and production deployment.
+
 
 Use `tf.data` for input processing instead of queues, it's faster and easier  
 Use object oriented layer APIs like `tf.kears.layers` and `tf.keras.Model`, they have explicit storage for variables  
@@ -152,3 +171,39 @@ You can also upload log files from web page.
 os.cpu_count()
 multiprocessing.cpu_count()
 ```
+
+##### Pack native function to run in Tensorflow
+
+Wraps a Python function and use it as a Tensorflow *op*.
+
+```
+tf.py_func(
+    func,
+    inp,
+    Tout,
+    stateful=True,
+    name=None
+)
+```
+
+`Tout`: A list or tuple of tensorflow data types or a single tensorflow data type if there is only one, indicating what `func` returns.
+
+##### Parallel computing in Tensorflow
+
+```
+tf.map_fn(
+    fn,
+    elems,
+    dtype=None,
+    parallel_iterations=None,
+    back_prop=True,
+    swap_memory=False,
+    infer_shape=True,
+    name=None
+ )
+```
+Map on the list of tensors unpacked from `elems` on dimension 0.  
+Parameter `dtype` should represent the return type of function `fn`. Basically it's dtypes in `tf.dtypes` of array of dtypes. Tensorflow doesn't support nexted structure in function return value for now.
+
+When graph building, the default value of `parallel_iterations` is 10, while in eager execution mode, it defaults to 1.
+
