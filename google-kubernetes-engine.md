@@ -1,0 +1,119 @@
+# Google Kubernetes Engine
+
+## Preparation
+
+1. Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstarts)
+
+2. Install Kubernetes command line tool  
+  `gcloud components install kubectl`
+
+3. Set project id and compute zone for cloud sdk.  
+
+	```
+	gcloud config set project PROJECT_ID
+	gcloud config set compute/zone us-central1-b
+	```
+
+## Deploy local code to Kubernetes Engine
+
+#### Build container image
+Move to source directory,  
+set project id so that it can be used to identify images later on.  
+
+`export PROJECT_ID="$(gcloud config get-value project -q)"`
+
+Then build docker image  
+
+`docker build -t gcr.id/${PROJECT_ID}/hello-app:v1 .`
+
+After that, uses can check building result  
+
+`docker images | grep ${PROJECT_ID}`
+
+##### Name of the docker image to Kubernetes cluster
+`[HOSTNAME]/[PROJECT-ID]/[IMAGE]@[IMAGE_DIGEST]`
+
+ - `[HOSTNAME]`  location in the console, available options: `gcr.io`, `us.gcr.io`, `eu.gcr.io`, `asia.gcr.io`
+ - `[PROJECT-ID]`  GCP project ID
+ - `IMAGE`  image name
+ - `[IMAGE_DIGEST]`  the sha256 hash value of the image contents
+
+#### Upload container image
+
+`gcloud docker -- push gcr.io/${PROJECT_ID}/hello-app:v1`
+
+Optionally, you can also enable docker cli access to Google Container Registry
+
+`gcloud auth configure-docker`, then
+
+`docker push gcr.io/${PROJECT_ID}/hello-app:v1`
+
+#### Create a container cluster
+
+`gcloud container clusters create hello-cluster --num-nodes=3`
+
+Check working VM instances once creation is done.  
+
+`gcloud compute instances list`
+
+#### Deploy application  
+After the configuration initially, `kubectl` can be used locally and control Cloud Kubernetes Engine.  
+
+`kubectl run hello-web --image=gcr.io/${PROJECT_ID}/hello-app:v1 --port 8080`
+
+Check the pods created  
+
+`kubectl get pods`
+
+#### Expose application to the Internet
+`kubectl expose deployment hello-web --type=LoadBalancer --port 80 --target-port 8080`
+
+Check established service  
+
+`kubectl get service`
+
+#### Scale up application
+Change replicas to intended number to scale VMs in the cluster
+
+`kubectl scale deployment hello-web --replica=4`
+
+Get deploy information  
+
+`kubectl get deployment hello-web`
+
+Check pods after scaling  
+
+`kubectl get pods`
+
+## Deploy a new version  
+When a new version is released, you need to build a new version of docker image (or rebuild the original image?) and update the new image to Kubernetes cluster.
+
+1. Build a new version of docker image  
+
+ `docker build -t gcr.io/${PROJECT_ID}/hello-app:v2`
+
+2. Push the image to Google Container Registry  
+
+ `gcloud docker -- push gcr.io/${PROJECT_ID}/hello-app:v2`
+
+3. Apply a rolling update to the existing deployment with an image update  
+
+ `kubectl set image deployment/hello-web hello-web=gcr.io/${PROJECT_ID}/hello-app:v2`
+
+ "hello-app" is set when deploying the application
+
+## Cleaning up
+
+1. Delete the service
+
+ `kubectl delete service hello-web`
+
+2. Wait for the Load Balancer provisioned for the hello-web Service to be deleted
+
+ `gcloud compute forwarding-rules list`
+
+ This command will return 0 rules if deletion succeeded
+
+3. Delete the container cluster
+
+ `gcloud container clusters delete hello-cluster`
