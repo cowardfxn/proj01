@@ -117,3 +117,27 @@ When a new version is released, you need to build a new version of docker image 
 3. Delete the container cluster
 
  `gcloud container clusters delete hello-cluster`
+
+## Notes
+##### Service in Kubernetes Engine
+**Service** is a set of Pod endpoints in a cluster, differenct pods can be accessed simply be service.  
+There are 5 types of services: **ClusterIP**, **NodePort**, **LoadBanlancer**, **ExternalName**, **Headless**  
+`ClusterIP` is the default service type, `LoadBanlancer` is the only type that exposes to the internet.
+
+##### `kubectl` commands
+`kubectl` commands to Kubernetes command line tools is what `docker` commands to Docker command line tools.
+
+ - `kubectl apply -f yaml-file-path` can create cluster/service according to configuration file
+ - `kubectl get pods` Get pods in current project
+ - `kubectl exec -it pod-name -- sh` Enter a specific Pod in command line
+ - `kubectl get service service-name -o yaml` Shows service configurations in the format of yaml
+
+##### gcloud configurations
+`gcloud` can create configurations in set, activate and deactivate as a group.
+
+ - `gcloud config configurations create configuraiton-name` Create a new named configuration, enable it by default, use `--no-activate` param to avoid activating the new configuration.
+ - `gcloud config configurations activate configuration-name` Activate a configuration by name, you can change the configurations after it's activated, the changes are saved in current configurations. You don't need to deactivate a configuration, just switch to another one.
+ - `gcloud config configurations describe configuration-name` Describe a configuration in detail
+ - `gcloud config configurations delete configuration-name` Delete a configuration
+ - `gcloud config configurations list` List existing configurations, can apply filter expressions via param `--filter`
+

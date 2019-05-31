@@ -21,6 +21,9 @@ This operation will generate folders `config`, `models`, `migrations`, `seeders`
 The migration scripts to execute are all in `migrations` directory, auto-generated migration script name pattern follows `TIMESTAMP-create-XXX.js`
 
 ### Migrate operations
+Create new migration
+`npx sequelize-cli migration:generate --name=what-change-to-implement`
+
 Perform migration  
 `npx sequelize-cli db:migrate`
 
