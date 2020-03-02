@@ -129,8 +129,18 @@ There are 5 types of services: **ClusterIP**, **NodePort**, **LoadBanlancer**, *
 
  - `kubectl apply -f yaml-file-path` can create cluster/service according to configuration file
  - `kubectl get pods` Get pods in current project
- - `kubectl exec -it pod-name -- sh` Enter a specific Pod in command line
+ - `kubectl exec -it pod-name [-c container-name] sh` Enter a specific Pod in command line
  - `kubectl get service service-name -o yaml` Shows service configurations in the format of yaml
+ - `kubectl port-forward svc/${SERVICE_NAME} ${PORT}:${PORT}` Create proxy to forward local request to service in cluster, the proxy needs to be recreated when the original pod is removed.
+
+##### Switch Kubernetes cluster
+`gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${PROJECT_REGION} --project ${PROJECT_ID}`  
+kubectl controls cluster according to current cluster configurations.
+
+###### ConfigMaps
+`kubectl create configmap [NAME] [DATA]` Create a configmap  
+`kubectl create configmap [NAME] --from-file [/PATH/TO/DIRECTORY]`  Create configmap from files in a directory  
+`kubectl get configmap [NAME] -o yaml`  list configurations in a configmap
 
 ##### gcloud configurations
 `gcloud` can create configurations in set, activate and deactivate as a group.
