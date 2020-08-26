@@ -64,3 +64,7 @@ Interfaces are implemented implicitly, a type implements an interface by impleme
 notice grammer design intention over grammer details
 
 Implement package interface methods to override package default methods, like Stringer.String() to fmt.Println()
+
+TCP service is different from HTTP service. HTTP service can transport HTML template.
+
+The channel in Golang bridges objects/go routines in memory, it doesn't operate I/O devices directly.
