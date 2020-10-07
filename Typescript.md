@@ -14,7 +14,7 @@ In **strict mode** if you use `foo` and `foo` is *undefined*, you get a `Referen
 ##### Node style callbacks
 Callback functions with error as first parameter, the program is treated as no exception if error is null.
 
-```
+```js
 (err, data) => {
   if (err) {
     // error handling
@@ -38,7 +38,7 @@ Javascript has only one number type, a double-precision 64-bit `Number`.
 
 class can have static attributes, and public, protected, private accessibility
 
-accessible on | `public` | `protected` | `private`
+Accessible on | `public` | `protected` | `private`
 :---- | :---- | :---- | :----
 class | yes | yes | yes
 class children | yes | yes | no
@@ -48,14 +48,14 @@ class can be interited
 
 class constructor is optional
 
-Rest parameters  
+Rest parameters
 `...argumentName` to group arguments
 
 Functions create a new variable scope in JavaScript
 
 A `const` is block scoped like `let`
 
-```
+```js
 const foo = 123;
 if (true) {
   const foo = 456;  // a new const variable in if block
@@ -64,16 +64,53 @@ if (true) {
 
 Array destructuring can be used to swap values
 
-```
+```js
 [b, a] = [a, b]
 ```
 
-Object spread  
+Object spread
 functions similar to `Object.assign`, what comes first is 'overwridden' by what comes later.
 
-```
+```js
 const point2D = {x: 2, y: 3};
 const point3D = {...point2D, z: 4};
 ```
 
 `for...of` iterates over array elements
+
+
+
+##### New operators
+
+###### Optional operator
+
+`?.` Stops evaluating if run into `null` or `undefined`, e.g. `user?.name` will return `undefined` if `user` is `undefined`, instead of throwing error.
+
+
+
+###### Nullish coalescing
+
+`??` falls back to the second operator if the first operator is `null` or `undefined`, e.g. `user ?? "Laurence"` equals to string "Laurence" if `user` is `null` or `undefined`.
+
+It differs from `||` operator in the way that `??` only handles `null` and `undefined`, it doesn't fall back for falsey values like `0`, `NaN` or  `""`.
+
+
+
+##### Promise
+
+###### allSettled()
+
+`Promise.allSettled()` returns until all tasks return, either is fulfilled or failed.
+
+###### all()
+
+`Promise.all()` returns until all tasks are fulfilled, or if any taks fails.
+
+
+
+##### Dependency injection
+
+Package `typedi` implements dependency injection in TS and JS. User can retrieve values by name, customise constructor function in class, or utilise single instance class via `typedi`.
+
+But dependency injection may result in memory leak.
+
