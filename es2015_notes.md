@@ -132,3 +132,18 @@ function factorial(n, acc=1) {
 }
 ```
 
+##### WeakRef/WeakMap
+直接将对象赋值给新的变量，会使原对象由于被引用而无法被回收。可以使用WeakMap构建对键值对类型对象的若饮用
+
+与之类似的，WeakRef可以创建对于复杂对象的弱引用而不影响对象的GC。  
+对同一对象的多个WeakRef，任一WeakRef所做的改变都会在其他所有WeakRef上体现。
+
+##### FinalizationRegistry
+FinalizationRegistry可以注册一个回调函数，在某个对象被垃圾回收后执行。  
+这个类不应该被用来处理业务逻辑，JS的垃圾回收工作通常由JS引擎管理，无论分代回收还是引用标记回收，都是引擎来控制的。
+
+##### Reflect
+全局静态类，无法new一个Reflect使用，只能直接调用其方法。拥有的某些方法与Object类似。  
+Object拥有的方法更多，也更全面。而Reflect更像是为了处理JS对象操作所提供的语法糖，方法的语法更标准。  
+Object支持多种浏览器环境，Reflect则几乎不能在IE浏览器上使用。
+
