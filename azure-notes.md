@@ -231,3 +231,163 @@ Serverless Services can only have a script for what the API does in cloud env, w
 Serverless Services are ordinarily used to handle back-end scenarios.
 
 
+### IoT (Internet of Things)
+
+IoT enables devices to gather and then relay information for data analysis.  
+
+#### Azure IoT Hub
+Manages bi-directional communications between devices and cloud
+
+#### Azure IoT Central
+Visualized device management center
+
+#### Azure Sphere
+Customized hardware chip to authenticate and communicate with Azure cloud
+
+### Security
+
+#### Azure Security Center
+Centralized security monitoring service, provides security score for your services both on Azure and on-premises.  
+Creates recommendations to improve security score.
+
+#### Azure Sentinel
+Cloud based SIEM (security information and event management) system  
+Analyse security data from different resources, and detect malicious events, support data on Azure and on-premises.  
+
+#### Azure Key Vault
+Manage secrets, manage encryption keys, manage SSL/TLS certificates, store secrets backed by hardware security modules (HSMs)
+
+#### Azure Dedicated Host
+Enables you choose dedicated physical servers to host your Azure VMs, so that your services follow regulatory compliances
+
+
+### Secure network connectivity
+
+#### defense in depth
+A defense-in-depth strategy uses a series of mechanisms to slow the advance of an attack that aims at acquiring unauthorized access to data.  
+From infrastructure to software level.
+
+ - Physical security
+ - Identity and access
+ - Perimeter
+ - Network
+ - Compute
+ - Application
+ - Data
+
+#### Azure Firewall
+network security device, stateful firewall that analyzes the complete context of a network connection, not just an individual packet of network traffic.  
+Deny by default
+
+#### Azure DDoS Protection
+Provides *Basic* and *Standard* level of DDoS protection for services on Azure
+
+#### Azure Network Security Group
+Enables you to filter network traffic to and from Azure resources within an Azure virtual network.
+
+### Azure Identity Services
+
+#### Authentication and Authorization
+They occur sequentially in the identity and access process.
+
+##### Authentication
+Authentication is the process of establishing the identity of a person or service that wants to access a resource.
+
+##### Authorization
+Authorization happens after authentication, it is the process of establishing what level of access an authenticated person of service has.
+
+*Microsoft Active Directory*  A service Microsoft published to mange multiple on-premises infrastructure components and systems by a single identity per user, works on-premises.  
+*Azure Active Directory*  Works similar to on-premises AD but on the cloud.
+
+Azure AD Connect can connect on-premises AD and Azure AD, so that local identities also work on the cloud.
+
+Multifactor authentication  The sign-in process for an additional form of identification, e.g. a code on phone or a finger scan.  
+Conditional Access  Azure AD allows access to resources based on identity signals, user may need not have full access before submiting extra authentication form if their location, devices or the sign-in application changes.
+
+
+### Governance Strategy on Azure
+
+The target of goverance on Azure is to enforce standards while still enabling teams to create and manage the cloud resources they need.
+
+#### Cloud Adoption Framework
+The Cloud Adoption Framework consists of tools, documentation, and proven practices. It helps an organization to deploy their business to cloud env.
+
+##### 1. Define your strategy
+ 1. Define and document your motivations
+ 2. Document business outcomes
+ 3. Develop a business case
+ 4. Choose the right first project
+
+##### 2. Make a plan
+ 1. Digital estate
+ 2. Initial organizational alignment
+ 3. Skills readiness plan
+ 4. Cloud adoption plan
+
+##### 3. Ready your organization
+ 1. Azure setup guide
+ 2. Azure landing zone
+ 3. Expand the landing zone
+ 4. Best practices
+
+##### 4. Adopt the cloud
+This step consists of two parts: *migrate* and *innovate*.
+
+###### Migrate
+ 1. Migrate your first workload
+ 2. Migration scenarios
+ 3. Best practices
+ 4. Process improvements
+
+###### Innovate
+ 1. Business value consensus
+ 2. Azure innovation guide
+ 3. Best practices
+ 4. Feedback loops
+
+##### 5. Govern and manage your cloud envrionments
+Two parts: *govern* and *manage*.
+
+###### Govern
+ 1. Methodology
+ 2. Benchmark
+ 3. Initial governance foundation
+ 4. Improve the initial goverance foundation
+
+###### Mange
+ 1. Establish a management baseline
+ 2. Define business commitments
+ 3. Expand the management baseline
+ 4. Advanced operations and design principles
+
+#### Subscription goverance strategy
+Teams often start their Azure goverance strategy at subscription level.
+
+ 1. *Billing*  You can create one billing report each subscription
+ 2. *Access control*  RBAC can be applied at subscription level
+ 3. *Subscription limits*  some Azure resources have hard limits per subscription, e.g. the maximum number of network Azure ExpressRoute circuits per subscription is 10
+
+
+Azure provides built-in roles for RBAC. These roles can be assigned to real users or resources to access to other resources.
+
+Resource lock  User can add resource lock to resource, the resource either can't be deleted or is *ReadOnly* depending on the lock type.  
+The locked resource can't be changed or deleted unless the resource lock is removed first.
+
+Resource tags can be used to group recources for management and billing.
+
+#### Azure Policy
+Azure Policy is a service in Azure that enables you to create, assign and manage policies that control or audit your resource.
+
+##### Azure Policy Initiatives
+An Azure Policy initiative is a way of grouping related policies into one set.
+
+Policies can be applied to users, manage groups, subscriptions, resource groups and resources.
+
+#### Azure Blueprint
+A service that can orchestrate the deployment of various resource templates and other artifacts like role assignments, policy assignments, Azure Resource Manager templates and resource groups.
+
+It is a service that can deploy goverance assignments in one template.  
+Azure provides built-in blueprint artifacts for many industrial standards.
+
+Azure Blueprints enables you to define a repeatable set of governance tools and standard Azure resources that your organization requires.
+
