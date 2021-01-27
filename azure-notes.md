@@ -391,3 +391,25 @@ Azure provides built-in blueprint artifacts for many industrial standards.
 
 Azure Blueprints enables you to define a repeatable set of governance tools and standard Azure resources that your organization requires.
 
+
+Microsoft Trust Center  
+Provides standards documents
+
+Azure Complicance Documentation
+
+TCO Calcularor  
+Total Cost of Ownership Calculator calculates the cost of servers, databases, storage and networking on Azure under user provided assumptions.
+
+Azure Reservations  
+Azure Reservations offers discounted prices on certain Azure services. To receive a discount, you reserve servies and resources by paying in advance.
+
+Deallocate VMs when they are offline.
+
+SLA Service-Level Aggrements  
+A servic-level aggrement is a formal aggrement between a service company and the customer. For Azure, the performance standards that Microsoft commits to for the customer.  
+Azure SLA focuses mainly on *uptime/downtime*. The term indicates service availability in a period (a week/month/year).
+
+If an application is consisted of several services that have different SLA uptime percentages, the overall uptime percentage equals to multiplying service SLA uptime percentages.  
+Improving hardware and  HA tier of single service can improve its uptime percentage.
+
+
